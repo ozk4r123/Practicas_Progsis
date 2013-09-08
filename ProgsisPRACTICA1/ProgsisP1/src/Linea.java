@@ -25,7 +25,7 @@ public class Linea
         }
         else
         {
-        	p.escribirError("\t"+lin+"\tLa etiqueta: "+etiq+" no es valida\r\n",archierr);
+        	p.escribirError(lin+"\tLa etiqueta: "+etiq+" no es valida\r\n",archierr);
         	return false;
         }
 	}
@@ -33,7 +33,7 @@ public class Linea
 	public boolean validarCodigo(String cod)
 	{
 		codigo=cod;
-		Pattern pat = Pattern.compile("[a-zA-Z][a-zA-Z.?]{1,4}");
+		Pattern pat = Pattern.compile("[a-zA-Z][a-zA-Z.]{1,4}");
 		Matcher mat = pat.matcher(codigo);
 		if (mat.matches())
 		{
@@ -41,7 +41,7 @@ public class Linea
 		}
 		else
 		{
-			p.escribirError("\t"+lin+"\tEl codigo de operacion: "+codigo+" no es valido\r\n",archierr);
+			p.escribirError(lin+"\tEl codigo de operacion: "+codigo+" no es valido\r\n",archierr);
 			return false;
 		}
 	}

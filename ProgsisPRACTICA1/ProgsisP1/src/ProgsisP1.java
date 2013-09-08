@@ -6,7 +6,7 @@ public class ProgsisP1
 	Scanner Leer=new Scanner(System.in);
 	String ruta, texto, archivo,Archivo_Instrucciones,Archivo_Error;
 	boolean fin;
-	int linea =-1;
+	int linea =0;
 
 	public ProgsisP1(String r)
 	{
@@ -55,8 +55,8 @@ public class ProgsisP1
 		{
 			RandomAccessFile archinst=new RandomAccessFile(Archivo_Instrucciones,"rw");
 			archinst.seek(0);
-			archinst.writeUTF("      LINEA      ETQ      CODOP      OPER");
-			archinst.writeUTF("\r\n----------------------------------------------------\r\n");	
+			archinst.writeBytes("      LINEA      ETQ      CODOP      OPER");
+			archinst.writeBytes("\r\n----------------------------------------------------\r\n");	
 			archinst.close();
 		}
 		catch(IOException ioe)
@@ -67,8 +67,8 @@ public class ProgsisP1
 	    {
 			RandomAccessFile archierr=new RandomAccessFile(Archivo_Error,"rw");
 			archierr.seek(0);
-			archierr.writeUTF("                   ERRORES                     ");	
-			archierr.writeUTF("\r\n----------------------------------------------------\r\n");	
+			archierr.writeBytes("                   ERRORES                     ");	
+			archierr.writeBytes("\r\n----------------------------------------------------\r\n");	
 			archierr.close();
 		}
 	    catch(IOException ioe)
@@ -82,12 +82,13 @@ public class ProgsisP1
 		try
 		{
 			RandomAccessFile archivo_asm=new RandomAccessFile(new File(ruta),"r");
+			texto=archivo_asm.readLine();
 			while(archivo_asm.getFilePointer()!=archivo_asm.length() && !fin)
 			{
 				texto=archivo_asm.readLine();
 				linea++;
 				System.out.println("Revisando linea no: "+linea);
-				revisarLinea();
+				Maquina_estados();
 			}
 			if(!fin)
 			{
@@ -101,7 +102,7 @@ public class ProgsisP1
         }
 	}
 
-    public void revisarLinea()
+    public void Maquina_estados()
     {
     	Linea lin= new Linea(linea,Archivo_Error);
     	String etiq,codop,oper;
@@ -157,20 +158,8 @@ public class ProgsisP1
     		     	 else
     		     	 {
     		     		 contador++;
-    		     		 estado=2;
+    		     		 estado=1;
     		     	 }  				
-     	         break;
-     	         case 2:
-     	        	System.out.println("Entra a caso 2");
-     	        	 if(tamaño==contador)
-	   		     	 {
-	   		    		 estado=10;
-	   		     	 }
-	   		     	 else
-	   		     	 {
-	   		     		contador++;
-	   		     		 estado=2;
-	   		     	 }  
      	         break;
      	         case 3:
      	        	System.out.println("Entra a caso 3");
@@ -237,12 +226,12 @@ public class ProgsisP1
      	        	System.out.println("Entra a caso 5");
      	        	 if(tamaño==contador)
      	        	 {
-	 	         		 escribirError("\t"+linea+"\tNo hay codigo de operacion \r\n",Archivo_Error);
+	 	         		 escribirError(linea+"\tNo hay codigo de operacion \r\n",Archivo_Error);
 	 	                 estado=10;
      	         	 }
      	         	 else if(cad[contador]==';')
      	         	 {
-     	         		 escribirError("\t"+linea+"\tNo hay codigo de operacion \r\n",Archivo_Error);
+     	         		 escribirError(linea+"\tNo hay codigo de operacion \r\n",Archivo_Error);
      	                 estado=1;
      	                 contador++;	
      	         	 }
@@ -365,7 +354,6 @@ public class ProgsisP1
          }
 	     if((eti && cod) && op)
 	     {
-	    	 System.out.println("linea "+linea+" Linea correcta");
 	    	 escribirInstruccion("	"+ linea+  "	"+ etiq+"	"+codop+"	"+oper+"\r\n");
 	     }
     }
@@ -377,7 +365,7 @@ public class ProgsisP1
     	{
 			RandomAccessFile archierr=new RandomAccessFile(Archivo_Error,"rw");
 			archierr.seek(archierr.length());
-			archierr.writeUTF(error);	
+			archierr.writeBytes(error);	
 			archierr.close();
 		}
 	    catch(IOException e)
@@ -392,7 +380,7 @@ public class ProgsisP1
     	{
     		RandomAccessFile archinst=new RandomAccessFile(Archivo_Instrucciones,"rw");
     		archinst.seek(archinst.length());
-			archinst.writeUTF(instruccion);	
+			archinst.writeBytes(instruccion);	
 			archinst.close();
 		}
 	    catch(IOException e)
