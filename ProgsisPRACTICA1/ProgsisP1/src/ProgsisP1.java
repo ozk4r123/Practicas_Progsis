@@ -83,6 +83,7 @@ public class ProgsisP1
 		{
 			RandomAccessFile archivo_asm=new RandomAccessFile(new File(ruta),"r");
 			texto=archivo_asm.readLine();
+			archivo_asm.seek(3);
 			while(archivo_asm.getFilePointer()!=archivo_asm.length() && !fin)
 			{
 				texto=archivo_asm.readLine();
@@ -108,7 +109,7 @@ public class ProgsisP1
     	String etiq,codop,oper;
         int contador, estado, tamaño;
         char[] cad = texto.toCharArray();
-        boolean eti, cod, op;
+        boolean eti, cod,cod_END, op;
         
         etiq=null; 
         codop=null; 
@@ -118,6 +119,7 @@ public class ProgsisP1
         tamaño=texto.length();
         eti=false;
         cod=false;
+        cod_END=false;
         op=false;
         
          while(estado != 10)
@@ -252,6 +254,7 @@ public class ProgsisP1
      	        	 if(tamaño==contador)
      	        	 {
      	        		 cod=lin.validarCodigo(codop);
+     	        		 cod_END=lin.validarCodigo_END(codop);
      	        		 estado=10;
      	        		 op=true;
      	        		 oper="NULL";
@@ -260,18 +263,21 @@ public class ProgsisP1
      	        	 {
      	        		 estado=1;
 	     	         	 cod=lin.validarCodigo(codop);
+	     	         	cod_END=lin.validarCodigo_END(codop);
 	     	         	 op=true;
 	     	         	 oper="NULL";
      	         	 }
      	         	 else if(cad[contador]==' '|| cad[contador]=='	')
      	         	 {
      	         		 cod=lin.validarCodigo(codop);
+     	         		cod_END=lin.validarCodigo_END(codop);
      	         		 contador++;
      	         		 estado=7;
      	         	 }
      	         	 else
      	         	 {
      	         		 codop=codop+cad[contador];
+     	         		cod_END=lin.validarCodigo_END(codop);
      	         		 estado=6;
      	         		 contador++;
      	         	 }
@@ -355,6 +361,10 @@ public class ProgsisP1
 	     if((eti && cod) && op)
 	     {
 	    	 escribirInstruccion("	"+ linea+  "	"+ etiq+"	"+codop+"	"+oper+"\r\n");
+	     }
+	     if(cod_END)
+	     {
+	    	 fin=true;
 	     }
     }
     

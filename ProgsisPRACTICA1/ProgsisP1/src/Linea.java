@@ -4,7 +4,7 @@ import java.util.regex.Matcher;
 
 public class Linea
 {
-	String etiqueta, codigo, operando, archierr;
+	String etiqueta, codigo,codigo_END, operando, archierr;
 	int lin;
 	ProgsisP1 p=new ProgsisP1();
 
@@ -45,7 +45,20 @@ public class Linea
 			return false;
 		}
 	}
-
+	public boolean validarCodigo_END(String cod)
+	{
+		codigo_END=cod;
+		Pattern pat = Pattern.compile("[E][N][D]");
+		Matcher mat = pat.matcher(codigo_END);
+		if (mat.matches())
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
 	public boolean validarOperando(String oper)
 	{
 		operando=oper;
