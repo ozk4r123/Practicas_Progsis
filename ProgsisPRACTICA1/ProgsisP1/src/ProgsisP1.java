@@ -122,7 +122,7 @@ public class ProgsisP1
         cod_END=false;
         op=false;
         
-         while(estado != 10)
+         while(estado != 9)
          {
         	switch(estado)
         	{
@@ -130,7 +130,7 @@ public class ProgsisP1
 	    			System.out.println("Entra a caso 0");
 	    			if(contador==tamaño)
 	    			{
-	    				estado=10;
+	    				estado=9;
 	    			}
 	    			else if(cad[contador]==';')
 	    			{
@@ -139,7 +139,7 @@ public class ProgsisP1
 				    }
 					else if(cad[contador]==' ' || cad[contador]=='	')
 					{
-						estado=4;
+						estado=3;
 						etiq="NULL";
 						eti=true;
 						contador++;
@@ -148,14 +148,14 @@ public class ProgsisP1
 					{	
 						etiq=cad[contador]+"";
 						contador++;
-						estado=3;
+						estado=2;
 					}	
 			     break;
     		     case 1:
     		    	 System.out.println("Entra a caso 1");
     		    	 if(tamaño==contador)
     		     	 {
-    		    		 estado=10;
+    		    		 estado=9;
     		     	 }
     		     	 else
     		     	 {
@@ -163,12 +163,12 @@ public class ProgsisP1
     		     		 estado=1;
     		     	 }  				
      	         break;
-     	         case 3:
+     	         case 2:
      	        	System.out.println("Entra a caso 3");
      	         	if(contador==tamaño)
      	         	{
      	         		escribirError(linea +"\tNo hay Codigo de operacion \r\n",Archivo_Error);
-     	         		estado=10;
+     	         		estado=9;
      	         	}
      	         	else if(cad[contador]==';')
      	         	{
@@ -180,20 +180,20 @@ public class ProgsisP1
      	         	{
      	         		eti=lin.validarEtiqueta(etiq);
      	         		contador++;
-     	         		estado=5;
+     	         		estado=4;
      	         	}
      	         	else
      	         	{
      	         		etiq+=cad[contador];
      	         		contador++;
-         		        estado=3;
+         		        estado=2;
      	         	}		
      	         break;
-     	         case 4:
+     	         case 3:
      	        	System.out.println("Entra a caso 4");
      	        	 if(tamaño==contador)
      	        	 {
-     	        		 estado=10;
+     	        		 estado=9;
 	 	         	 }
      	         	 else if(cad[contador]==';')
      	         	 {
@@ -203,7 +203,7 @@ public class ProgsisP1
      	         	 else if(cad[contador]==' ' || cad[contador]=='	')
      	         	 {
 	         			 contador++;
-	         			 estado=4;
+	         			 estado=3;
      	         	 }
      	         	 else
      	         	 {
@@ -213,23 +213,23 @@ public class ProgsisP1
      	         			 if(subStr.toUpperCase().equals("END"))
      	         			 {
      	         				fin=true;
-     	         				 estado=10;
+     	         				 estado=9;
      	         			 }
 	         			 }
      	         		 if(!fin)
      	         		 {
      	         			 codop=cad[contador]+"";
      	         			 contador++;
-     	         			 estado=6;
+     	         			 estado=5;
      	         		 }	
      	         	 }   	         			
      	         break;
-     	         case 5:
+     	         case 4:
      	        	System.out.println("Entra a caso 5");
      	        	 if(tamaño==contador)
      	        	 {
 	 	         		 escribirError(linea+"\tNo hay codigo de operacion \r\n",Archivo_Error);
-	 	                 estado=10;
+	 	                 estado=9;
      	         	 }
      	         	 else if(cad[contador]==';')
      	         	 {
@@ -240,22 +240,22 @@ public class ProgsisP1
      	         	 else if(cad[contador]==' '|| cad[contador]=='	')
      	         	 {
      	         		 contador++;
-     	         		 estado=5;
+     	         		 estado=4;
      	         	 }
      	         	 else
      	         	 {
      	         		 codop=cad[contador]+"";
-     	         		 estado=6;
+     	         		 estado=5;
      	         		 contador++;
      	         	 }
      	         break;
-     	         case 6:
+     	         case 5:
      	        	System.out.println("Entra a caso 6");
      	        	 if(tamaño==contador)
      	        	 {
      	        		 cod=lin.validarCodigo(codop);
      	        		 cod_END=lin.validarCodigo_END(codop);
-     	        		 estado=10;
+     	        		 estado=9;
      	        		 op=true;
      	        		 oper="NULL";
      	        	 }
@@ -272,28 +272,28 @@ public class ProgsisP1
      	         		 cod=lin.validarCodigo(codop);
      	         		cod_END=lin.validarCodigo_END(codop);
      	         		 contador++;
-     	         		 estado=7;
+     	         		 estado=6;
      	         	 }
      	         	 else
      	         	 {
      	         		 codop=codop+cad[contador];
      	         		cod_END=lin.validarCodigo_END(codop);
-     	         		 estado=6;
+     	         		 estado=5;
      	         		 contador++;
      	         	 }
      	         break;
-     	         case 7:
+     	         case 6:
      	        	System.out.println("Entra a caso 7");
      	        	 if(tamaño==contador)
      	         	 {
-     	        		 estado=10;
+     	        		 estado=9;
      	        		 oper="NULL";
      	         		 op=true;
      	         	 }
      	         	 else if(cad[contador]==' '|| cad[contador]=='	')
      	         	 {
      	         		 contador++;
-     	         		 estado=7;
+     	         		 estado=6;
      	         	 }
      	         	 else if(cad[contador]==';')
      	         	 {
@@ -306,15 +306,15 @@ public class ProgsisP1
      	         	 {
      	         		 oper=cad[contador]+"";
      	         		 contador++;
-     	         		 estado=8;
+     	         		 estado=7;
      	         	 }    	         	
      	         break;
-     	         case 8:
+     	         case 7:
      	        	System.out.println("Entra a caso 8");
      	        	 if(tamaño==contador)
      	        	 {
      	        		 op=lin.validarOperando(oper);
-     	         		 estado=10;
+     	         		 estado=9;
      	         	 }
      	         	 else if(cad[contador]==';')
      	         	 {
@@ -326,7 +326,7 @@ public class ProgsisP1
      	         	 {
      	         		op=lin.validarOperando(oper);
      	         		contador++;
-     	         		estado=9;
+     	         		estado=8;
      	         	 }
      	         	 else if(cad[contador]==';')
      	         	 {
@@ -340,11 +340,11 @@ public class ProgsisP1
      	         		 contador++;
      	         	 }		
      	         break;
-     	         case 9:
+     	         case 8:
      	        	System.out.println("Entra a caso 9");
      	        	 if(tamaño==contador)
      	        	 {
-     	         		 estado=10;
+     	         		 estado=9;
      	         	 }
      	         	 else if(cad[contador]==' ' || cad[contador]=='	')
      	         	 {
