@@ -1,0 +1,396 @@
+import java.util.*;
+import java.io.*;
+
+public class ProgsisP1 
+{
+	Scanner Leer=new Scanner(System.in);
+	String ruta, texto, archivo,Archivo_Instrucciones,Archivo_Error;
+	boolean fin;
+	int linea =-1;
+
+	public ProgsisP1(String r)
+	{
+		ruta=r;
+	}
+
+	public void validarRuta()
+	{
+		File fichero = new File(ruta);
+        if (fichero.exists())
+        {
+        	if(fichero.getName().endsWith(".asm") || fichero.getName().endsWith(".ASM"))
+        	{
+        	    crearArchivos();
+        	    leerArchivo();  
+        	}
+            else
+            {
+        		System.out.println("El archivo no tiene la extensión .ASM");
+        	}       	
+        }          
+        else
+        {
+        	System.out.println("La ruta no existe");
+        }
+     }
+    
+	public void crearArchivos()
+	{		
+		File fichero = new File(ruta);
+		Archivo_Instrucciones=fichero.getName().substring(0,fichero.getName().indexOf('.'))+".INST";
+		Archivo_Error=fichero.getName().substring(0,fichero.getName().indexOf('.'))+".ERR";
+		File inst = new File(Archivo_Instrucciones);
+		File err = new File(Archivo_Error);
+		if(inst.exists())
+		{
+			inst.delete();
+		}
+		if(err.exists())
+		{
+			err.delete();
+		}
+		try
+		{
+			RandomAccessFile archinst=new RandomAccessFile(Archivo_Instrucciones,"rw");
+			archinst.writeUTF("      LINEA      ETQ      CODOP      OPER");
+			archinst.writeUTF("\r\n----------------------------------------------------\r\n");	
+			archinst.close();
+		}
+		catch(IOException e)
+		{
+			System.out.println("Error al crear archivo de instrucciones");
+		}	       
+	    try
+	    {
+			RandomAccessFile archierr=new RandomAccessFile(Archivo_Error,"rw");
+			 archierr.writeUTF("                      ERRORES                    ");	
+			 archierr.writeUTF("\r\n----------------------------------------------------\r\n");	
+			archierr.close();
+		}
+	    catch(IOException e2)
+	    {
+	    	System.out.println("Error al crear el archivo de errores");
+	    }
+	}
+
+	public void leerArchivo() 
+	{		
+		try
+		{
+			RandomAccessFile archivo_asm=new RandomAccessFile(new File(ruta),"r");
+			while(archivo_asm.getFilePointer()!=archivo_asm.length() && !fin)
+			{
+				texto=archivo_asm.readLine();
+				linea++;
+				revisarLinea();
+			}
+			if(!fin)
+			{
+				escribirError("No hay Fin",Archivo_Error);
+			}
+			archivo_asm.close();
+	    }
+        catch(IOException e)
+        {
+	      System.out.println("Error al leer el archivo");
+        }
+	}
+
+    public void revisarLinea()
+    {
+    	Linea lin= new Linea(linea,Archivo_Error);     		   	
+    	String etiq,codop,oper;
+        int cont, edo, tam;
+        char[] cad = texto.toCharArray();
+        boolean eti, cod, op;
+        
+        etiq=null; 
+        codop=null; 
+        oper=null;
+        cont=0; 
+        edo=0; 
+        tam=texto.length();
+        eti=false;
+        cod=false;
+        op=false;
+        
+         while(edo != 10)
+         {
+        	switch(edo)
+        	{
+	    		case 0:
+	    			if(cont==tam)
+	    			{
+	    				edo=10;
+	    			}
+	    			else if(cad[cont]==';')
+	    			{
+	    				edo=1;
+					    cont++;
+				    }
+					else if(cad[cont]==' ' || cad[cont]=='	')
+					{
+						edo=4;
+						etiq="NULL";
+						eti=true;
+						cont++;
+					}
+					else
+					{	
+						etiq=cad[cont]+"";
+						cont++;
+						edo=3;
+					}	
+			     break;
+    		     case 1:
+    		    	 if(tam==cont)
+    		     	 {
+    		    		 edo=10;
+    		     	 }
+    		     	 else
+    		     	 {
+    		     		 cont++;
+    		     		 edo=2;
+    		     	 }  				
+     	         break;
+     	         case 2:
+     	        	 if(tam==cont)
+	   		     	 {
+	   		    		 edo=10;
+	   		     	 }
+	   		     	 else
+	   		     	 {
+	   		     		 cont++;
+	   		     		 edo=2;
+	   		     	 }  
+     	         break;
+     	         case 3:
+     	         	if(cont==tam)
+     	         	{
+     	         		escribirError(linea +" No hay Codigo de operacion \r\n",Archivo_Error);
+     	         		edo=10;
+     	         	}
+     	         	else if(cad[cont]==';')
+     	         	{
+ 	         			escribirError("Linea "+ linea+ "No hay codigo de operacion",Archivo_Error);
+ 	         			edo=1;
+ 	         			cont++;
+     	         	}
+     	         	else if(cad[cont]==' ' || cad[cont]=='	')
+     	         	{
+     	         		eti=lin.validarEtiqueta(etiq);
+     	         		cont++;
+     	         		edo=5;
+     	         	}
+     	         	else
+     	         	{
+     	         		etiq+=cad[cont];
+         		        cont++;
+         		        edo=3;
+     	         	}		
+     	         break;
+     	         case 4:
+     	        	 if(tam==cont)
+     	        	 {
+     	        		 edo=10;
+	 	         	 }
+     	         	 else if(cad[cont]==';')
+     	         	 {
+	     	         	 edo=1;
+	     	         	 cont++;
+     	         	 }
+     	         	 else if(cad[cont]==' ' || cad[cont]=='	')
+     	         	 {
+	         			 cont++;
+	         			 edo=4;
+     	         	 }
+     	         	 else
+     	         	 {
+     	         		 if((cad[cont]=='E'||cad[cont]=='e')&& (cont+3)<=tam)
+	         			 {
+     	         			 String subStr=texto.substring(cont, cont+3);
+     	         			 if(subStr.toUpperCase().equals("END"))
+     	         			 {
+     	         				fin=true;
+     	         				 edo=10;
+     	         			 }   	
+	         			 }
+     	         		 if(!fin)
+     	         		 {
+     	         			 codop=cad[cont]+"";
+     	         			 cont++;
+     	         			 edo=6;
+     	         		 }	
+     	         	 }   	         			
+     	         break;
+     	         case 5:
+     	        	 if(tam==cont)
+     	        	 {
+	 	         		 escribirError("Linea "+ linea+" No hay codigo de operacion ",Archivo_Error);
+	 	                 edo=10;
+     	         	 }
+     	         	 else if(cad[cont]==';')
+     	         	 {
+     	         		 escribirError("Linea "+ linea+" No hay codigo de operacion ",Archivo_Error);
+     	                 edo=1;
+     	                 cont++;	
+     	         	 }
+     	         	 else if(cad[cont]==' '|| cad[cont]=='	')
+     	         	 {
+     	         		 cont++;
+     	         		 edo=5;
+     	         	 }
+     	         	 else
+     	         	 {
+     	         		 codop=cad[cont]+"";
+     	         		 edo=6;
+     	         		 cont++;
+     	         	 }		
+     	         break;
+     	         case 6:
+     	        	 if(tam==cont)
+     	        	 {
+     	        		 cod=lin.validarCodigo(codop);
+     	        		 edo=10;
+     	        		 op=true;
+     	        		 oper="NULL";
+     	        	 }
+     	        	 else if(cad[cont]==';')
+     	        	 {
+     	        		 edo=1;
+	     	         	 cod=lin.validarCodigo(codop);
+	     	         	 op=true;
+	     	         	 oper="NULL";
+     	         	 }	
+     	         	 else if(cad[cont]==' '|| cad[cont]=='	')
+     	         	 {
+     	         		 cod=lin.validarCodigo(codop);
+     	         		 cont++;
+     	         		 edo=7;
+     	         	 }
+     	         	 else
+     	         	 {
+     	         		 codop=codop+cad[cont];
+     	         		 edo=6;
+     	         		 cont++;
+     	         	 }
+     	         break;
+     	         case 7:
+     	        	 if(tam==cont)
+     	         	 {
+     	        		 oper="NULL";
+     	         		 op=true;
+     	         	 }
+     	         	 else if(cad[cont]==' '|| cad[cont]=='	')
+     	         	 {
+     	         		 cont++;
+     	         		 edo=7;
+     	         	 }
+     	         	 else if(cad[cont]==';')
+     	         	 {
+	         			 cont++;
+	         		 	 edo=1;
+	         		 	 op=true;
+	         			 oper="NULL";
+     	         	 }
+     	         	 else
+     	         	 {
+     	         		 oper=cad[cont]+"";
+     	         		 cont++;
+     	         		 edo=8;
+     	         	 }    	         	
+     	         break;
+     	         case 8:
+     	        	 if(tam==cont)
+     	        	 {
+     	        		 op=lin.validarOperando(oper);
+     	         		 edo=10;
+     	         	 }
+     	         	 else if(cad[cont]==';')
+     	         	 {
+     	         		 op=lin.validarOperando(oper);
+     	         		 edo=1;
+     	         		 cont++;
+     	         	 }
+     	         	 else if(cad[cont]==' ' || cad[cont]=='	')
+     	         	 {
+     	         		op=lin.validarOperando(oper);
+     	         		cont++;
+     	         		edo=9;
+     	         	 }
+     	         	 else if(cad[cont]==';')
+     	         	 {
+     	         		 op=lin.validarOperando(oper);
+     	         		 cont++;
+     	         		 edo=1;
+     	         	 }
+     	         	 else
+     	         	 {
+     	         		 oper+=cad[cont];
+     	         		 cont++;
+     	         	 }		
+     	         break;
+     	         case 9:
+     	        	 if(tam==cont)
+     	        	 {
+     	         		 edo=10;
+     	         	 }
+     	         	 else if(cad[cont]==' ' || cad[cont]=='	')
+     	         	 {
+     	         		 cont++;
+     	         	 }
+     	         	 else if(cad[cont]==';')
+     	         	 {
+     	         		 cont++;
+     	         		 edo=1;
+     	         	 }
+     	         break;       
+        	}	
+         }
+	     if((eti && cod) && op)
+	     {
+	    	 escribirInstruccion("	"+ linea+  "	"+ etiq+"	"+codop+"	"+oper+"\r\n");
+	     }     	
+    }
+    
+    public void escribirError(String error, String archi)
+    {
+    	Archivo_Error=archi;
+    	try
+    	{
+			RandomAccessFile archierr=new RandomAccessFile(Archivo_Error,"rw");
+			archierr.seek(archierr.length());
+			archierr.writeUTF(error);	
+			archierr.close();
+		}
+	    catch(IOException e)
+	    {
+		    System.out.println("Error al escribir el error");
+	    }
+    }  
+    	 
+    public void escribirInstruccion(String instruccion)
+    {
+    	try
+    	{
+    		RandomAccessFile archinst=new RandomAccessFile(Archivo_Instrucciones,"rw");
+    		archinst.seek(archinst.length());
+			archinst.writeUTF(instruccion);	
+			archinst.close();
+		}
+	    catch(IOException e)
+	    {
+		    System.out.println("Error al escribir la instrucción");
+	    }
+    }
+       
+    public static void main(String[] args)
+    {
+    	Scanner Leer=new Scanner(System.in);
+    	String ruta;
+    	System.out.println("Ingresa la ruta del archivo(extensión .ASM)");
+    	ruta=Leer.nextLine();
+    	ProgsisP1 obj= new ProgsisP1(ruta);
+    	obj.validarRuta();	
+    }
+}

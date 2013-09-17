@@ -1,0 +1,54 @@
+import java.util.regex.Pattern;
+import java.util.regex.Matcher;
+
+
+public class Linea
+{
+	String etiqueta, codigo, operando, archierr;
+	int lin;
+	ProgsisP1 p=new ProgsisP1();
+
+	public Linea(int linea, String archiv)
+	{
+		lin=linea;
+		archierr=archiv;
+	}
+
+	public boolean  validarEtiqueta(String etiq)
+	{
+		etiqueta=etiq;
+		Pattern pat = Pattern.compile("[a-zA-Z][a-zA-Z_0-9]{0,7}");
+        Matcher mat = pat.matcher(etiqueta);
+        if (mat.matches())
+        {
+        	return true;
+        }
+        else
+        {
+        	p.escribirError("\t"+lin+"\tLa etiqueta: "+etiq+" no es valida\n\n",archierr);
+        	return false;
+        }
+	}
+
+	public boolean validarCodigo(String cod)
+	{
+		codigo=cod;
+		Pattern pat = Pattern.compile("[a-zA-Z][a-zA-Z.]{1,4}");
+		Matcher mat = pat.matcher(codigo);
+		if (mat.matches())
+		{
+			return true;
+		}
+		else
+		{
+			p.escribirError("\t"+lin+"\tEl codigo de operacion: "+codigo+" no es valido\n\n",archierr);
+			return false;
+		}
+	}
+
+	public boolean validarOperando(String oper)
+	{
+		operando=oper;
+		return true;
+	}
+}
