@@ -1,0 +1,2200 @@
+Linea 2:
+E: 
+I: ABA
+O: 
+NO: 0
+MD: INH
+MDE: INH
+CM: 18 06
+NB: 2
+
+Linea 4:
+E: 
+I: LDAA
+O: #$30
+NO: 1
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: IMM
+CM: 86 ii
+NB: 2
+
+Linea 6:
+E: 
+I: LDAA
+O: 255
+NO: 1
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: DIR
+CM: 96 dd
+NB: 2
+
+Linea 8:
+E: 
+I: LDAA
+O: 256
+NO: 1
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: EXT
+CM: B6 hh ll
+NB: 3
+
+Linea 10:
+E: 
+I: LDAA
+O: $FF
+NO: 1
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: DIR
+CM: 96 dd
+NB: 2
+
+Linea 12:
+E: 
+I: LDAA
+O: $100
+NO: 1
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: EXT
+CM: B6 hh ll
+NB: 3
+
+Linea 14:
+E: 
+I: LDAA
+O: %1111111
+NO: 1
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: DIR
+CM: 96 dd
+NB: 2
+
+Linea 16:
+E: 
+I: LDAA
+O: %100000000
+NO: 1
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: EXT
+CM: B6 hh ll
+NB: 3
+
+Linea 18:
+E: 
+I: LDAA
+O: 15,X
+NO: 2
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: IDX
+CM: A6 xb
+NB: 2
+
+Linea 20:
+E: 
+I: LDAA
+O: 16,SP
+NO: 2
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: IDX1
+CM: A6 xb ff
+NB: 3
+
+Linea 22:
+E: 
+I: LDAA
+O: 3,X+
+NO: 2
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: IDX
+CM: A6 xb
+NB: 2
+
+Linea 24:
+E: 
+I: LDAA
+O: 3,-SP
+NO: 2
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: IDX
+CM: A6 xb
+NB: 2
+
+Linea 26:
+E: 
+I: LDAA
+O: 255,SP
+NO: 2
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: IDX1
+CM: A6 xb ff
+NB: 3
+
+Linea 28:
+E: 
+I: LDAA
+O: 256,SP
+NO: 2
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: IDX1
+CM: A6 xb ff
+NB: 3
+
+Linea 30:
+E: 
+I: LDAA
+O: -256,PC
+NO: 2
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: IDX1
+CM: A6 xb ff
+NB: 3
+
+Linea 32:
+E: 
+I: LDAA
+O: A,PC
+NO: 2
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: IDX
+CM: A6 xb
+NB: 2
+
+Linea 34:
+E: 
+I: LDAA
+O: -257,PC
+NO: 2
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: IDX2
+CM: A6 xb ee ff
+NB: 4
+
+Linea 36:
+E: 
+I: LDAA
+O: 10000,PC
+NO: 2
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: IDX2
+CM: A6 xb ee ff
+NB: 4
+
+Linea 38:
+E: 
+I: LDAA
+O: [1000,X]
+NO: 2
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: [IDX2]
+CM: A6 xb ee ff
+NB: 4
+
+Linea 40:
+E: 
+I: LDAA
+O: [D,x]
+NO: 2
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: [D,IDX]
+CM: A6 xb
+NB: 2
+
+Linea 2:
+E: 
+I: ABA
+O: 
+NO: 0
+MD: INH
+MDE: INH
+CM: 18 06
+NB: 2
+
+Linea 4:
+E: 
+I: LDAA
+O: #$30
+NO: 1
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: IMM
+CM: 86 ii
+NB: 2
+
+Linea 6:
+E: 
+I: LDAA
+O: 255
+NO: 1
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: DIR
+CM: 96 dd
+NB: 2
+
+Linea 8:
+E: 
+I: LDAA
+O: 256
+NO: 1
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: EXT
+CM: B6 hh ll
+NB: 3
+
+Linea 10:
+E: 
+I: LDAA
+O: $FF
+NO: 1
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: DIR
+CM: 96 dd
+NB: 2
+
+Linea 12:
+E: 
+I: LDAA
+O: $100
+NO: 1
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: EXT
+CM: B6 hh ll
+NB: 3
+
+Linea 14:
+E: 
+I: LDAA
+O: %1111111
+NO: 1
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: DIR
+CM: 96 dd
+NB: 2
+
+Linea 16:
+E: 
+I: LDAA
+O: %100000000
+NO: 1
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: EXT
+CM: B6 hh ll
+NB: 3
+
+Linea 18:
+E: 
+I: LDAA
+O: 15,X
+NO: 2
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: IDX
+CM: A6 xb
+NB: 2
+
+Linea 20:
+E: 
+I: LDAA
+O: 16,SP
+NO: 2
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: IDX1
+CM: A6 xb ff
+NB: 3
+
+Linea 22:
+E: 
+I: LDAA
+O: 3,X+
+NO: 2
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: IDX
+CM: A6 xb
+NB: 2
+
+Linea 24:
+E: 
+I: LDAA
+O: 3,-SP
+NO: 2
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: IDX
+CM: A6 xb
+NB: 2
+
+Linea 26:
+E: 
+I: LDAA
+O: 255,SP
+NO: 2
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: IDX1
+CM: A6 xb ff
+NB: 3
+
+Linea 28:
+E: 
+I: LDAA
+O: 256,SP
+NO: 2
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: IDX1
+CM: A6 xb ff
+NB: 3
+
+Linea 30:
+E: 
+I: LDAA
+O: -256,PC
+NO: 2
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: IDX1
+CM: A6 xb ff
+NB: 3
+
+Linea 32:
+E: 
+I: LDAA
+O: A,PC
+NO: 2
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: IDX
+CM: A6 xb
+NB: 2
+
+Linea 34:
+E: 
+I: LDAA
+O: -257,PC
+NO: 2
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: IDX2
+CM: A6 xb ee ff
+NB: 4
+
+Linea 36:
+E: 
+I: LDAA
+O: 10000,PC
+NO: 2
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: IDX2
+CM: A6 xb ee ff
+NB: 4
+
+Linea 38:
+E: 
+I: LDAA
+O: [1000,X]
+NO: 2
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: [IDX2]
+CM: A6 xb ee ff
+NB: 4
+
+Linea 40:
+E: 
+I: LDAA
+O: [D,x]
+NO: 2
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: [D,IDX]
+CM: A6 xb
+NB: 2
+
+Linea 2:
+E: 
+I: ABA
+O: 
+NO: 0
+MD: INH
+MDE: INH
+CM: 18 06
+NB: 2
+
+Linea 4:
+E: 
+I: LDAA
+O: #$30
+NO: 1
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: IMM
+CM: 86 ii
+NB: 2
+
+Linea 6:
+E: 
+I: LDAA
+O: 255
+NO: 1
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: DIR
+CM: 96 dd
+NB: 2
+
+Linea 8:
+E: 
+I: LDAA
+O: 256
+NO: 1
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: EXT
+CM: B6 hh ll
+NB: 3
+
+Linea 10:
+E: 
+I: LDAA
+O: $FF
+NO: 1
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: DIR
+CM: 96 dd
+NB: 2
+
+Linea 12:
+E: 
+I: LDAA
+O: $100
+NO: 1
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: EXT
+CM: B6 hh ll
+NB: 3
+
+Linea 14:
+E: 
+I: LDAA
+O: %1111111
+NO: 1
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: DIR
+CM: 96 dd
+NB: 2
+
+Linea 16:
+E: 
+I: LDAA
+O: %100000000
+NO: 1
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: EXT
+CM: B6 hh ll
+NB: 3
+
+Linea 18:
+E: 
+I: LDAA
+O: 15,X
+NO: 2
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: IDX
+CM: A6 xb
+NB: 2
+
+Linea 20:
+E: 
+I: LDAA
+O: 16,SP
+NO: 2
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: IDX1
+CM: A6 xb ff
+NB: 3
+
+Linea 22:
+E: 
+I: LDAA
+O: 3,X+
+NO: 2
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: IDX
+CM: A6 xb
+NB: 2
+
+Linea 24:
+E: 
+I: LDAA
+O: 3,-SP
+NO: 2
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: IDX
+CM: A6 xb
+NB: 2
+
+Linea 26:
+E: 
+I: LDAA
+O: 255,SP
+NO: 2
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: IDX1
+CM: A6 xb ff
+NB: 3
+
+Linea 28:
+E: 
+I: LDAA
+O: 256,SP
+NO: 2
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: IDX1
+CM: A6 xb ff
+NB: 3
+
+Linea 30:
+E: 
+I: LDAA
+O: -256,PC
+NO: 2
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: IDX1
+CM: A6 xb ff
+NB: 3
+
+Linea 32:
+E: 
+I: LDAA
+O: A,PC
+NO: 2
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: IDX
+CM: A6 xb
+NB: 2
+
+Linea 34:
+E: 
+I: LDAA
+O: -257,PC
+NO: 2
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: IDX2
+CM: A6 xb ee ff
+NB: 4
+
+Linea 36:
+E: 
+I: LDAA
+O: 10000,PC
+NO: 2
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: IDX2
+CM: A6 xb ee ff
+NB: 4
+
+Linea 38:
+E: 
+I: LDAA
+O: [1000,X]
+NO: 2
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: [IDX2]
+CM: A6 xb ee ff
+NB: 4
+
+Linea 40:
+E: 
+I: LDAA
+O: [D,x]
+NO: 2
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: [D,IDX]
+CM: A6 xb
+NB: 2
+
+Linea 2:
+E: 
+I: ABA
+O: 
+NO: 0
+MD: INH
+MDE: INH
+CM: 18 06
+NB: 2
+
+Linea 4:
+E: 
+I: LDAA
+O: #$30
+NO: 1
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: IMM
+CM: 86 ii
+NB: 2
+
+Linea 6:
+E: 
+I: LDAA
+O: 255
+NO: 1
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: DIR
+CM: 96 dd
+NB: 2
+
+Linea 8:
+E: 
+I: LDAA
+O: 256
+NO: 1
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: EXT
+CM: B6 hh ll
+NB: 3
+
+Linea 10:
+E: 
+I: LDAA
+O: $FF
+NO: 1
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: DIR
+CM: 96 dd
+NB: 2
+
+Linea 12:
+E: 
+I: LDAA
+O: $100
+NO: 1
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: EXT
+CM: B6 hh ll
+NB: 3
+
+Linea 14:
+E: 
+I: LDAA
+O: %1111111
+NO: 1
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: DIR
+CM: 96 dd
+NB: 2
+
+Linea 16:
+E: 
+I: LDAA
+O: %100000000
+NO: 1
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: EXT
+CM: B6 hh ll
+NB: 3
+
+Linea 18:
+E: 
+I: LDAA
+O: 15,X
+NO: 2
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: IDX
+CM: A6 xb
+NB: 2
+
+Linea 20:
+E: 
+I: LDAA
+O: 16,SP
+NO: 2
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: IDX1
+CM: A6 xb ff
+NB: 3
+
+Linea 22:
+E: 
+I: LDAA
+O: 3,X+
+NO: 2
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: IDX
+CM: A6 xb
+NB: 2
+
+Linea 24:
+E: 
+I: LDAA
+O: 3,-SP
+NO: 2
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: IDX
+CM: A6 xb
+NB: 2
+
+Linea 26:
+E: 
+I: LDAA
+O: 255,SP
+NO: 2
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: IDX1
+CM: A6 xb ff
+NB: 3
+
+Linea 28:
+E: 
+I: LDAA
+O: 256,SP
+NO: 2
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: IDX1
+CM: A6 xb ff
+NB: 3
+
+Linea 30:
+E: 
+I: LDAA
+O: -256,PC
+NO: 2
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: IDX1
+CM: A6 xb ff
+NB: 3
+
+Linea 32:
+E: 
+I: LDAA
+O: A,PC
+NO: 2
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: IDX
+CM: A6 xb
+NB: 2
+
+Linea 34:
+E: 
+I: LDAA
+O: -257,PC
+NO: 2
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: IDX2
+CM: A6 xb ee ff
+NB: 4
+
+Linea 36:
+E: 
+I: LDAA
+O: 10000,PC
+NO: 2
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: IDX2
+CM: A6 xb ee ff
+NB: 4
+
+Linea 38:
+E: 
+I: LDAA
+O: [1000,X]
+NO: 2
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: [IDX2]
+CM: A6 xb ee ff
+NB: 4
+
+Linea 40:
+E: 
+I: LDAA
+O: [D,x]
+NO: 2
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: [D,IDX]
+CM: A6 xb
+NB: 2
+
+Linea 2:
+E: 
+I: ABA
+O: 
+NO: 0
+MD: INH
+MDE: INH
+CM: 18 06
+NB: 2
+
+Linea 4:
+E: 
+I: LDAA
+O: #$30
+NO: 1
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: IMM
+CM: 86 ii
+NB: 2
+
+Linea 6:
+E: 
+I: LDAA
+O: 255
+NO: 1
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: DIR
+CM: 96 dd
+NB: 2
+
+Linea 8:
+E: 
+I: LDAA
+O: 256
+NO: 1
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: EXT
+CM: B6 hh ll
+NB: 3
+
+Linea 10:
+E: 
+I: LDAA
+O: $FF
+NO: 1
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: DIR
+CM: 96 dd
+NB: 2
+
+Linea 12:
+E: 
+I: LDAA
+O: $100
+NO: 1
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: EXT
+CM: B6 hh ll
+NB: 3
+
+Linea 14:
+E: 
+I: LDAA
+O: %1111111
+NO: 1
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: DIR
+CM: 96 dd
+NB: 2
+
+Linea 16:
+E: 
+I: LDAA
+O: %100000000
+NO: 1
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: EXT
+CM: B6 hh ll
+NB: 3
+
+Linea 18:
+E: 
+I: LDAA
+O: 15,X
+NO: 2
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: IDX
+CM: A6 xb
+NB: 2
+
+Linea 20:
+E: 
+I: LDAA
+O: 16,SP
+NO: 2
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: IDX1
+CM: A6 xb ff
+NB: 3
+
+Linea 22:
+E: 
+I: LDAA
+O: 3,X+
+NO: 2
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: IDX
+CM: A6 xb
+NB: 2
+
+Linea 24:
+E: 
+I: LDAA
+O: 3,-SP
+NO: 2
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: IDX
+CM: A6 xb
+NB: 2
+
+Linea 26:
+E: 
+I: LDAA
+O: 255,SP
+NO: 2
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: IDX1
+CM: A6 xb ff
+NB: 3
+
+Linea 28:
+E: 
+I: LDAA
+O: 256,SP
+NO: 2
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: IDX1
+CM: A6 xb ff
+NB: 3
+
+Linea 30:
+E: 
+I: LDAA
+O: -256,PC
+NO: 2
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: IDX1
+CM: A6 xb ff
+NB: 3
+
+Linea 32:
+E: 
+I: LDAA
+O: A,PC
+NO: 2
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: IDX
+CM: A6 xb
+NB: 2
+
+Linea 34:
+E: 
+I: LDAA
+O: -257,PC
+NO: 2
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: IDX2
+CM: A6 xb ee ff
+NB: 4
+
+Linea 36:
+E: 
+I: LDAA
+O: 10000,PC
+NO: 2
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: IDX2
+CM: A6 xb ee ff
+NB: 4
+
+Linea 38:
+E: 
+I: LDAA
+O: [1000,X]
+NO: 2
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: [IDX2]
+CM: A6 xb ee ff
+NB: 4
+
+Linea 40:
+E: 
+I: LDAA
+O: [D,x]
+NO: 2
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: [D,IDX]
+CM: A6 xb
+NB: 2
+
+Linea 2:
+E: 
+I: ABA
+O: 
+NO: 0
+MD: INH
+MDE: INH
+CM: 18 06
+NB: 2
+
+Linea 4:
+E: 
+I: LDAA
+O: #$30
+NO: 1
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: IMM
+CM: 86 ii
+NB: 2
+
+Linea 6:
+E: 
+I: LDAA
+O: 255
+NO: 1
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: DIR
+CM: 96 dd
+NB: 2
+
+Linea 8:
+E: 
+I: LDAA
+O: 256
+NO: 1
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: EXT
+CM: B6 hh ll
+NB: 3
+
+Linea 10:
+E: 
+I: LDAA
+O: $FF
+NO: 1
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: DIR
+CM: 96 dd
+NB: 2
+
+Linea 12:
+E: 
+I: LDAA
+O: $100
+NO: 1
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: EXT
+CM: B6 hh ll
+NB: 3
+
+Linea 14:
+E: 
+I: LDAA
+O: %1111111
+NO: 1
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: DIR
+CM: 96 dd
+NB: 2
+
+Linea 16:
+E: 
+I: LDAA
+O: %100000000
+NO: 1
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: EXT
+CM: B6 hh ll
+NB: 3
+
+Linea 18:
+E: 
+I: LDAA
+O: 15,X
+NO: 2
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: IDX
+CM: A6 xb
+NB: 2
+
+Linea 20:
+E: 
+I: LDAA
+O: 16,SP
+NO: 2
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: IDX1
+CM: A6 xb ff
+NB: 3
+
+Linea 22:
+E: 
+I: LDAA
+O: 3,X+
+NO: 2
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: IDX
+CM: A6 xb
+NB: 2
+
+Linea 24:
+E: 
+I: LDAA
+O: 3,-SP
+NO: 2
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: IDX
+CM: A6 xb
+NB: 2
+
+Linea 26:
+E: 
+I: LDAA
+O: 255,SP
+NO: 2
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: IDX1
+CM: A6 xb ff
+NB: 3
+
+Linea 28:
+E: 
+I: LDAA
+O: 256,SP
+NO: 2
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: IDX1
+CM: A6 xb ff
+NB: 3
+
+Linea 30:
+E: 
+I: LDAA
+O: -256,PC
+NO: 2
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: IDX1
+CM: A6 xb ff
+NB: 3
+
+Linea 32:
+E: 
+I: LDAA
+O: A,PC
+NO: 2
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: IDX
+CM: A6 xb
+NB: 2
+
+Linea 34:
+E: 
+I: LDAA
+O: -257,PC
+NO: 2
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: IDX2
+CM: A6 xb ee ff
+NB: 4
+
+Linea 36:
+E: 
+I: LDAA
+O: 10000,PC
+NO: 2
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: IDX2
+CM: A6 xb ee ff
+NB: 4
+
+Linea 38:
+E: 
+I: LDAA
+O: [1000,X]
+NO: 2
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: [IDX2]
+CM: A6 xb ee ff
+NB: 4
+
+Linea 40:
+E: 
+I: LDAA
+O: [D,x]
+NO: 2
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: [D,IDX]
+CM: A6 xb
+NB: 2
+
+Linea 2:
+E: 
+I: ABA
+O: 
+NO: 0
+MD: INH
+MDE: INH
+CM: 18 06
+NB: 2
+
+Linea 4:
+E: 
+I: LDAA
+O: #$30
+NO: 1
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: IMM
+CM: 86 ii
+NB: 2
+
+Linea 6:
+E: 
+I: LDAA
+O: 255
+NO: 1
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: DIR
+CM: 96 dd
+NB: 2
+
+Linea 8:
+E: 
+I: LDAA
+O: 256
+NO: 1
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: EXT
+CM: B6 hh ll
+NB: 3
+
+Linea 10:
+E: 
+I: LDAA
+O: $FF
+NO: 1
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: DIR
+CM: 96 dd
+NB: 2
+
+Linea 12:
+E: 
+I: LDAA
+O: $100
+NO: 1
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: EXT
+CM: B6 hh ll
+NB: 3
+
+Linea 14:
+E: 
+I: LDAA
+O: %1111111
+NO: 1
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: DIR
+CM: 96 dd
+NB: 2
+
+Linea 16:
+E: 
+I: LDAA
+O: %100000000
+NO: 1
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: EXT
+CM: B6 hh ll
+NB: 3
+
+Linea 18:
+E: 
+I: LDAA
+O: 15,X
+NO: 2
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: IDX
+CM: A6 xb
+NB: 2
+
+Linea 20:
+E: 
+I: LDAA
+O: 16,SP
+NO: 2
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: IDX1
+CM: A6 xb ff
+NB: 3
+
+Linea 22:
+E: 
+I: LDAA
+O: 3,X+
+NO: 2
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: IDX
+CM: A6 xb
+NB: 2
+
+Linea 24:
+E: 
+I: LDAA
+O: 3,-SP
+NO: 2
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: IDX
+CM: A6 xb
+NB: 2
+
+Linea 26:
+E: 
+I: LDAA
+O: 255,SP
+NO: 2
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: IDX1
+CM: A6 xb ff
+NB: 3
+
+Linea 28:
+E: 
+I: LDAA
+O: 256,SP
+NO: 2
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: IDX1
+CM: A6 xb ff
+NB: 3
+
+Linea 30:
+E: 
+I: LDAA
+O: -256,PC
+NO: 2
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: IDX1
+CM: A6 xb ff
+NB: 3
+
+Linea 32:
+E: 
+I: LDAA
+O: A,PC
+NO: 2
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: IDX
+CM: A6 xb
+NB: 2
+
+Linea 34:
+E: 
+I: LDAA
+O: -257,PC
+NO: 2
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: IDX2
+CM: A6 xb ee ff
+NB: 4
+
+Linea 36:
+E: 
+I: LDAA
+O: 10000,PC
+NO: 2
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: IDX2
+CM: A6 xb ee ff
+NB: 4
+
+Linea 38:
+E: 
+I: LDAA
+O: [1000,X]
+NO: 2
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: [IDX2]
+CM: A6 xb ee ff
+NB: 4
+
+Linea 40:
+E: 
+I: LDAA
+O: [D,x]
+NO: 2
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: [D,IDX]
+CM: A6 xb
+NB: 2
+
+Linea 2:
+E: 
+I: ABA
+O: 
+NO: 0
+MD: INH
+MDE: INH
+CM: 18 06
+NB: 2
+
+Linea 4:
+E: 
+I: LDAA
+O: #$30
+NO: 1
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: IMM
+CM: 86 ii
+NB: 2
+
+Linea 6:
+E: 
+I: LDAA
+O: 255
+NO: 1
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: DIR
+CM: 96 dd
+NB: 2
+
+Linea 8:
+E: 
+I: LDAA
+O: 256
+NO: 1
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: EXT
+CM: B6 hh ll
+NB: 3
+
+Linea 10:
+E: 
+I: LDAA
+O: $FF
+NO: 1
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: DIR
+CM: 96 dd
+NB: 2
+
+Linea 12:
+E: 
+I: LDAA
+O: $100
+NO: 1
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: EXT
+CM: B6 hh ll
+NB: 3
+
+Linea 14:
+E: 
+I: LDAA
+O: %1111111
+NO: 1
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: DIR
+CM: 96 dd
+NB: 2
+
+Linea 16:
+E: 
+I: LDAA
+O: %100000000
+NO: 1
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: EXT
+CM: B6 hh ll
+NB: 3
+
+Linea 18:
+E: 
+I: LDAA
+O: 15,X
+NO: 2
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: IDX
+CM: A6 xb
+NB: 2
+
+Linea 20:
+E: 
+I: LDAA
+O: 16,SP
+NO: 2
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: IDX1
+CM: A6 xb ff
+NB: 3
+
+Linea 22:
+E: 
+I: LDAA
+O: 3,X+
+NO: 2
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: IDX
+CM: A6 xb
+NB: 2
+
+Linea 24:
+E: 
+I: LDAA
+O: 3,-SP
+NO: 2
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: IDX
+CM: A6 xb
+NB: 2
+
+Linea 26:
+E: 
+I: LDAA
+O: 255,SP
+NO: 2
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: IDX1
+CM: A6 xb ff
+NB: 3
+
+Linea 28:
+E: 
+I: LDAA
+O: 256,SP
+NO: 2
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: IDX1
+CM: A6 xb ff
+NB: 3
+
+Linea 30:
+E: 
+I: LDAA
+O: -256,PC
+NO: 2
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: IDX1
+CM: A6 xb ff
+NB: 3
+
+Linea 32:
+E: 
+I: LDAA
+O: A,PC
+NO: 2
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: IDX
+CM: A6 xb
+NB: 2
+
+Linea 34:
+E: 
+I: LDAA
+O: -257,PC
+NO: 2
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: IDX2
+CM: A6 xb ee ff
+NB: 4
+
+Linea 36:
+E: 
+I: LDAA
+O: 10000,PC
+NO: 2
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: IDX2
+CM: A6 xb ee ff
+NB: 4
+
+Linea 38:
+E: 
+I: LDAA
+O: [1000,X]
+NO: 2
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: [IDX2]
+CM: A6 xb ee ff
+NB: 4
+
+Linea 40:
+E: 
+I: LDAA
+O: [D,x]
+NO: 2
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: [D,IDX]
+CM: A6 xb
+NB: 2
+
+Linea 2:
+E: 
+I: ABA
+O: 
+NO: 0
+MD: INH
+MDE: INH
+CM: 18 06
+NB: 2
+
+Linea 4:
+E: 
+I: LDAA
+O: #$30
+NO: 1
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: IMM
+CM: 86 ii
+NB: 2
+
+Linea 6:
+E: 
+I: LDAA
+O: 255
+NO: 1
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: DIR
+CM: 96 dd
+NB: 2
+
+Linea 8:
+E: 
+I: LDAA
+O: 256
+NO: 1
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: EXT
+CM: B6 hh ll
+NB: 3
+
+Linea 10:
+E: 
+I: LDAA
+O: $FF
+NO: 1
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: DIR
+CM: 96 dd
+NB: 2
+
+Linea 12:
+E: 
+I: LDAA
+O: $100
+NO: 1
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: EXT
+CM: B6 hh ll
+NB: 3
+
+Linea 14:
+E: 
+I: LDAA
+O: %1111111
+NO: 1
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: DIR
+CM: 96 dd
+NB: 2
+
+Linea 16:
+E: 
+I: LDAA
+O: %100000000
+NO: 1
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: EXT
+CM: B6 hh ll
+NB: 3
+
+Linea 18:
+E: 
+I: LDAA
+O: 15,X
+NO: 2
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: IDX
+CM: A6 xb
+NB: 2
+
+Linea 20:
+E: 
+I: LDAA
+O: 16,SP
+NO: 2
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: IDX1
+CM: A6 xb ff
+NB: 3
+
+Linea 22:
+E: 
+I: LDAA
+O: 3,X+
+NO: 2
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: IDX
+CM: A6 xb
+NB: 2
+
+Linea 24:
+E: 
+I: LDAA
+O: 3,-SP
+NO: 2
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: IDX
+CM: A6 xb
+NB: 2
+
+Linea 26:
+E: 
+I: LDAA
+O: 255,SP
+NO: 2
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: IDX1
+CM: A6 xb ff
+NB: 3
+
+Linea 28:
+E: 
+I: LDAA
+O: 256,SP
+NO: 2
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: IDX1
+CM: A6 xb ff
+NB: 3
+
+Linea 30:
+E: 
+I: LDAA
+O: -256,PC
+NO: 2
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: IDX1
+CM: A6 xb ff
+NB: 3
+
+Linea 32:
+E: 
+I: LDAA
+O: A,PC
+NO: 2
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: IDX
+CM: A6 xb
+NB: 2
+
+Linea 34:
+E: 
+I: LDAA
+O: -257,PC
+NO: 2
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: IDX2
+CM: A6 xb ee ff
+NB: 4
+
+Linea 36:
+E: 
+I: LDAA
+O: 10000,PC
+NO: 2
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: IDX2
+CM: A6 xb ee ff
+NB: 4
+
+Linea 38:
+E: 
+I: LDAA
+O: [1000,X]
+NO: 2
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: [IDX2]
+CM: A6 xb ee ff
+NB: 4
+
+Linea 40:
+E: 
+I: LDAA
+O: [D,x]
+NO: 2
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: [D,IDX]
+CM: A6 xb
+NB: 2
+
+Linea 2:
+E: 
+I: ABA
+O: 
+NO: 0
+MD: INH
+MDE: INH
+CM: 18 06
+NB: 2
+
+Linea 4:
+E: 
+I: LDAA
+O: #$30
+NO: 1
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: IMM
+CM: 86 ii
+NB: 2
+
+Linea 6:
+E: 
+I: LDAA
+O: 255
+NO: 1
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: DIR
+CM: 96 dd
+NB: 2
+
+Linea 8:
+E: 
+I: LDAA
+O: 256
+NO: 1
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: EXT
+CM: B6 hh ll
+NB: 3
+
+Linea 10:
+E: 
+I: LDAA
+O: $FF
+NO: 1
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: DIR
+CM: 96 dd
+NB: 2
+
+Linea 12:
+E: 
+I: LDAA
+O: $100
+NO: 1
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: EXT
+CM: B6 hh ll
+NB: 3
+
+Linea 14:
+E: 
+I: LDAA
+O: %1111111
+NO: 1
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: DIR
+CM: 96 dd
+NB: 2
+
+Linea 16:
+E: 
+I: LDAA
+O: %100000000
+NO: 1
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: EXT
+CM: B6 hh ll
+NB: 3
+
+Linea 18:
+E: 
+I: LDAA
+O: 15,X
+NO: 2
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: IDX
+CM: A6 xb
+NB: 2
+
+Linea 20:
+E: 
+I: LDAA
+O: 16,SP
+NO: 2
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: IDX1
+CM: A6 xb ff
+NB: 3
+
+Linea 22:
+E: 
+I: LDAA
+O: 3,X+
+NO: 2
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: IDX
+CM: A6 xb
+NB: 2
+
+Linea 24:
+E: 
+I: LDAA
+O: 3,-SP
+NO: 2
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: IDX
+CM: A6 xb
+NB: 2
+
+Linea 26:
+E: 
+I: LDAA
+O: 255,SP
+NO: 2
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: IDX1
+CM: A6 xb ff
+NB: 3
+
+Linea 28:
+E: 
+I: LDAA
+O: 256,SP
+NO: 2
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: IDX1
+CM: A6 xb ff
+NB: 3
+
+Linea 30:
+E: 
+I: LDAA
+O: -256,PC
+NO: 2
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: IDX1
+CM: A6 xb ff
+NB: 3
+
+Linea 32:
+E: 
+I: LDAA
+O: A,PC
+NO: 2
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: IDX
+CM: A6 xb
+NB: 2
+
+Linea 34:
+E: 
+I: LDAA
+O: -257,PC
+NO: 2
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: IDX2
+CM: A6 xb ee ff
+NB: 4
+
+Linea 36:
+E: 
+I: LDAA
+O: 10000,PC
+NO: 2
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: IDX2
+CM: A6 xb ee ff
+NB: 4
+
+Linea 38:
+E: 
+I: LDAA
+O: [1000,X]
+NO: 2
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: [IDX2]
+CM: A6 xb ee ff
+NB: 4
+
+Linea 40:
+E: 
+I: LDAA
+O: [D,x]
+NO: 2
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: [D,IDX]
+CM: A6 xb
+NB: 2
+
+Linea 2:
+E: 
+I: ABA
+O: 
+NO: 0
+MD: INH
+MDE: INH
+CM: 18 06
+NB: 2
+
+Linea 4:
+E: 
+I: LDAA
+O: #$30
+NO: 1
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: IMM
+CM: 86 ii
+NB: 2
+
+Linea 6:
+E: 
+I: LDAA
+O: 255
+NO: 1
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: DIR
+CM: 96 dd
+NB: 2
+
+Linea 8:
+E: 
+I: LDAA
+O: 256
+NO: 1
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: EXT
+CM: B6 hh ll
+NB: 3
+
+Linea 10:
+E: 
+I: LDAA
+O: $FF
+NO: 1
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: DIR
+CM: 96 dd
+NB: 2
+
+Linea 12:
+E: 
+I: LDAA
+O: $100
+NO: 1
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: EXT
+CM: B6 hh ll
+NB: 3
+
+Linea 14:
+E: 
+I: LDAA
+O: %1111111
+NO: 1
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: DIR
+CM: 96 dd
+NB: 2
+
+Linea 16:
+E: 
+I: LDAA
+O: %100000000
+NO: 1
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: EXT
+CM: B6 hh ll
+NB: 3
+
+Linea 18:
+E: 
+I: LDAA
+O: 15,X
+NO: 2
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: IDX
+CM: A6 xb
+NB: 2
+
+Linea 20:
+E: 
+I: LDAA
+O: 16,SP
+NO: 2
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: IDX1
+CM: A6 xb ff
+NB: 3
+
+Linea 22:
+E: 
+I: LDAA
+O: 3,X+
+NO: 2
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: IDX
+CM: A6 xb
+NB: 2
+
+Linea 24:
+E: 
+I: LDAA
+O: 3,-SP
+NO: 2
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: IDX
+CM: A6 xb
+NB: 2
+
+Linea 26:
+E: 
+I: LDAA
+O: 255,SP
+NO: 2
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: IDX1
+CM: A6 xb ff
+NB: 3
+
+Linea 28:
+E: 
+I: LDAA
+O: 256,SP
+NO: 2
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: IDX1
+CM: A6 xb ff
+NB: 3
+
+Linea 30:
+E: 
+I: LDAA
+O: -256,PC
+NO: 2
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: IDX1
+CM: A6 xb ff
+NB: 3
+
+Linea 32:
+E: 
+I: LDAA
+O: A,PC
+NO: 2
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: IDX
+CM: A6 xb
+NB: 2
+
+Linea 34:
+E: 
+I: LDAA
+O: -257,PC
+NO: 2
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: IDX2
+CM: A6 xb ee ff
+NB: 4
+
+Linea 36:
+E: 
+I: LDAA
+O: 10000,PC
+NO: 2
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: IDX2
+CM: A6 xb ee ff
+NB: 4
+
+Linea 38:
+E: 
+I: LDAA
+O: [1000,X]
+NO: 2
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: [IDX2]
+CM: A6 xb ee ff
+NB: 4
+
+Linea 40:
+E: 
+I: LDAA
+O: [D,x]
+NO: 2
+MD: IMM,DIR,EXT,IDX,IDX1,IDX2,[D,IDX],[IDX2]
+MDE: [D,IDX]
+CM: A6 xb
+NB: 2
+

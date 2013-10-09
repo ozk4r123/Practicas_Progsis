@@ -1,0 +1,1102 @@
+package practica3;
+
+import java.io.*;
+import java.util.*;
+
+// *************************** class Practica3 ******************************
+class Practica3
+{
+	static String checaExtension()
+	{
+		System.out.println("\n\t MODO DE DIRECCIONAMIENTO ESPECIFICO");
+		System.out.print("\n Nobre del archivo a procesar? ... ");
+		String archivo=Lectora.leeCadena();
+		int quitaExtension=archivo.indexOf(".asm");
+		if(quitaExtension!=-1)
+		{
+			archivo=archivo.substring(0,quitaExtension);
+		}
+	return archivo;
+	}
+// ............................... main ..............................			
+	public static void main(String args[])
+	{
+		String nombreArchivo; // Guarda el nombre del archivo sin extension
+		nombreArchivo=checaExtension();
+		if(ArchivoASM.abreArchivoASM(nombreArchivo)==true)
+		{
+			if(ArchivoTABOP.abreArchivoTABOP()==true)
+			{
+				String nombreArchivoTABOP=Lectora.leeCadena();
+				ArchivoASM asm=new ArchivoASM();
+				asm.leeArchivoASM(nombreArchivo);
+			
+			System.out.println("\n Abrir archivos: "+nombreArchivo+".inst"+" y "+nombreArchivo+".err"+" Para checar resultado");
+			}
+		}
+		System.out.println("\n");
+	}
+}
+// *************************** clase ArchivoASM******************************
+class ArchivoASM
+{
+	String 	etiqueta="",
+			instruccion="",
+			operando="",
+			modoDireccionamientoASM="",
+			modoDirEspecifico="",
+			codigoMaquina="",
+		 	numeroBytes;
+// ............................... abre ArchivoASM ................................
+	static boolean abreArchivoASM(String nombreArchivo)
+	{
+		boolean abreArchivo=false;
+		try
+		{
+			BufferedReader archivoAsm=new BufferedReader(new FileReader(nombreArchivo+".asm")); // Lee archivo .ASM
+			abreArchivo=true;
+		}
+		catch(IOException ioe)
+		{
+			System.out.print("\n No se puede leer el archivo: "+nombreArchivo);
+		}
+		return abreArchivo;
+	}	
+// ............................... lee ArchivoASM ................................
+	void leeArchivoASM(String nombreArchivo)
+	{
+		int contadorLinea=0;
+		try{
+			BufferedReader archivoAsm=new BufferedReader(new FileReader(nombreArchivo+".asm")); // Lee archivo .ASM
+			while(archivoAsm.ready())
+			{
+				ArchivoASM asm=new ArchivoASM();
+				contadorLinea++;
+				String linea=archivoAsm.readLine();
+				linea=ArchivoASM.eliminaComentario(linea);
+				linea=checaEspacio(linea);
+					if(checaEtiqueta(linea, contadorLinea)==true)
+					{ // Entra si la linea tiene etiqueta
+						linea=ArchivoASM.nuevaLinea(linea);
+						StringTokenizer token=new StringTokenizer(linea," "); // Tokeniza la nueva linea(sin espacios,sin tabuladores y sin comentarios)
+						int numeroTokens=token.countTokens();
+						for(int i=0;i<numeroTokens;i++)
+						{
+							String palabra=token.nextToken();
+						if(i==0)
+							asm.etiqueta=palabra;
+						if(i==1)
+							asm.instruccion=palabra;
+						if(i==2)
+							asm.operando=palabra;
+						}
+					}
+					else
+					{ // Entra si la linea no tiene etiqueta
+						linea=ArchivoASM.nuevaLinea(linea);
+						StringTokenizer token=new StringTokenizer(linea," "); // Tokeniza la nueva linea(sin espacios,sin tabuladores y sin comentarios)
+						int numeroTokens=token.countTokens();
+						for(int i=0;i<numeroTokens;i++)
+						{
+							String palabra=token.nextToken();
+							if(i==0)
+								asm.instruccion=palabra;
+							if(i==1)
+								asm.operando=palabra;
+						}
+					}
+					if(asm.instruccion.length()>0)
+					{ // Si linea tiene instruccion
+						ArchivoTABOP tabop=new ArchivoTABOP();
+						String cadena=tabop.leeArchivoTABOP(asm.instruccion);
+						cadena=cadena.substring(1);
+						StringTokenizer tokenCadena=new StringTokenizer(cadena,"-");
+						String md=tokenCadena.nextToken();
+						//****
+						int ubicaDIDX=md.indexOf("[D,IDX]");
+						if(ubicaDIDX!=-1)
+							md=md.replace("[D,IDX]","[D|IDX]");
+							System.out.println("CAMBIO::::::"+md);
+						String cm=tokenCadena.nextToken();
+						String nb=tokenCadena.nextToken();
+						//asm.modoDireccionamientoASM=md;
+						
+						if(md.length()>0)
+						{ // Si la instruccion esta en TABOP
+							DIRECCIONAMIENTOS mde=new DIRECCIONAMIENTOS();
+							//String modoTemp=mde.buscaModoDirEspecifico(asm.operando); // Guarda modo Especifico
+							
+							StringTokenizer tokenModo=new StringTokenizer(md,",");
+							int ntokens=tokenModo.countTokens();
+							StringTokenizer tokenCm=new StringTokenizer(cm,"|");
+							StringTokenizer tokenNb=new StringTokenizer(nb,";");
+							
+							for(int i=0;i<ntokens;i++)
+							{
+								try
+								{
+									String temp=tokenModo.nextToken();
+									
+									if(temp.equals("[D|IDX]"))
+									temp="[D,IDX]";
+									
+									String modoTemp=mde.buscaModoDirEspecifico(asm.operando); // Guarda modo Especifico
+									System.out.println("Obtension:"+modoTemp);
+								
+									System.out.println("caca: "+temp);
+									String tempCm=tokenCm.nextToken();
+									String tempNb=tokenNb.nextToken();
+									if(modoTemp.equals(temp))
+									{
+										md=md.replace("[D|IDX]","[D,IDX]");
+										asm.modoDireccionamientoASM=md;
+										asm.modoDirEspecifico=temp;
+										asm.codigoMaquina=tempCm;
+										asm.numeroBytes=tempNb;
+									}
+								}
+								catch(NoSuchElementException noSE)
+								{
+								}
+							}
+							
+							if(asm.modoDirEspecifico.length()>0)
+							{
+								System.out.println("Linea: "+contadorLinea);
+								System.out.println("MDE: "+asm.modoDirEspecifico);
+								
+							asm.escribeInst(asm.etiqueta,asm.instruccion,asm.operando,contadorLinea,asm.modoDireccionamientoASM,asm.modoDirEspecifico,asm.codigoMaquina,asm.numeroBytes,nombreArchivo);
+							}
+							else
+							{ // operando Invalido
+								System.out.print("Linea "+contadorLinea+": ");
+								System.out.println("Sin Operando");
+								asm.escribeErr(nombreArchivo,contadorLinea,3); 
+							}
+						}
+						else if(asm.modoDireccionamientoASM.length()==0) // Si la instruccion no esta en TABOP
+							asm.escribeErr(nombreArchivo,contadorLinea); // Instruccion Invalida
+					}
+					if(asm.instruccion.length()==0&&(asm.etiqueta.length()!=0||asm.operando.length()!=0)) // Si la linea no tiene instruccion
+						asm.escribeErr(contadorLinea,nombreArchivo); // No Tiene Istrucion	
+			} // Fin de while
+		} // Fin Try archivo
+		catch(IOException ioe)
+		{
+			System.out.print("\n No se puede leer el archivo: "+nombreArchivo);
+		}
+	}
+// ............................... eliminaComentario ..........................
+	static String eliminaComentario(String linea)
+	{
+		int eliminaCom=linea.indexOf(';'); // Elimina comantario si hay	
+		if(eliminaCom!=-1)
+		{
+			linea=linea.substring(0,eliminaCom);
+		}
+	return linea;
+	}
+// ............................... checaEspacio ..........................
+	static String checaEspacio(String linea)
+	{
+		String 	checaEspacio=linea; // Chceca si la linea tiene espacios en blanco
+ 			  	checaEspacio=checaEspacio.trim();
+				if(checaEspacio.length()==0)
+				{ // Elimina los espacios para entrar a la exception
+					linea=linea.trim();
+				}
+	return linea;
+	}
+// ............................... nuevaLinea........................
+	static String nuevaLinea(String linea)
+	{
+		linea=linea.replace('\t',' '); // Se sustituyen los tabuladores por espacios para mejor manejo de la linea
+		linea=linea.trim(); // Se elimian los espacios en blanco en ambos extremos	
+		return linea;
+	}			
+// ............................... checaEtiqueta ..............................			
+	boolean checaEtiqueta(String linea,int contadorLinea)
+	{
+		boolean bandEtiqueta=false;
+		try
+		{
+			if(linea.charAt(0) == 'e' || linea.charAt(0) == 'E')
+			{ // Checa si la linea tiene etiqueta
+				bandEtiqueta = true;
+			}
+		}
+		catch(StringIndexOutOfBoundsException lineVacia)
+		{
+			System.out.println("\n Linea "+contadorLinea+ ": "+"Vacia");
+		}
+	return bandEtiqueta;	   	
+	}
+// ............................... escribeInst ....................................
+	void escribeInst(String etiqueta,String instruccion,String operando,int contadorLinea,String modoDireccionamiento,String modoDirEspecifico,String codigoMaquina,String numeroBytes,String nombreArchivo)
+	{
+		try
+		{
+			BufferedWriter archivoInst=new BufferedWriter(new FileWriter(nombreArchivo+".inst",true)); // Crea archivo .INST
+			archivoInst.write("Linea "+contadorLinea+":");
+		   	archivoInst.newLine();
+		   	archivoInst.write("E: "+etiqueta);
+		   	archivoInst.newLine();
+		   	archivoInst.write("I: "+instruccion);
+		   	archivoInst.newLine();
+		   	archivoInst.write("O: "+operando);
+		   	archivoInst.newLine();
+		   	StringTokenizer tokOp=new StringTokenizer(operando,",");
+		   	int totalOperandos=tokOp.countTokens();	
+		   	archivoInst.write("NO: "+totalOperandos);
+		   	archivoInst.newLine();
+		   	archivoInst.write("MD: "+modoDireccionamiento);
+		   	archivoInst.newLine();
+		   	archivoInst.write("MDE: "+modoDirEspecifico);
+		   	archivoInst.newLine();
+		   	archivoInst.write("CM: "+codigoMaquina);
+		   	archivoInst.newLine();
+		   	archivoInst.write("NB: "+numeroBytes);
+		   	archivoInst.newLine();
+		   	archivoInst.newLine();
+		   	archivoInst.flush();
+		}
+		catch(IOException ioe)
+		{
+		}
+	}
+// ............................... escribeErr ......................................
+	void escribeErr(int contadorLinea,String nombreArchivo)
+	{
+		try
+		{
+			BufferedWriter archivoErr=new BufferedWriter(new FileWriter(nombreArchivo+".err",true));
+			archivoErr.write("Error en la linea "+contadorLinea+": Falta Instruccion" );
+			archivoErr.newLine();
+			archivoErr.newLine();
+			archivoErr.flush();
+		}
+		catch(IOException ioe)
+		{
+		}
+	}		
+// ............................... escribeErr ......................................
+	void escribeErr(String nombreArchivo,int contadorLinea)
+	{
+		try
+		{
+			BufferedWriter archivoErr=new BufferedWriter(new FileWriter(nombreArchivo+".err",true));
+			archivoErr.write("Error en la linea "+contadorLinea+": Instrucion Invalida" );
+			archivoErr.newLine();
+			archivoErr.newLine();
+			archivoErr.flush();
+		}
+		catch(IOException ioe)
+		{
+		}
+	}	
+// ............................... escribeErr ......................................
+	void escribeErr(String nombreArchivo,int contadorLinea,int x)
+	{
+		try
+		{
+			BufferedWriter archivoErr=new BufferedWriter(new FileWriter(nombreArchivo+".err",true));
+			archivoErr.write("Error en la linea "+contadorLinea+": Operando Invalido: "+ operando );
+			archivoErr.newLine();
+			archivoErr.newLine();
+			archivoErr.flush();
+		}
+		catch(IOException ioe)
+		{
+		}
+	}	
+}
+// *************************** class ArchivoTABOP ******************************
+class ArchivoTABOP
+{
+	String 	instruccion="",
+			modoDireccionamiento="",
+			codigoMaquina="",
+			numeroBytes;
+		ArchivoTABOP tabop;
+// ............................... abreArchivoTABOP ...............................		
+	static boolean abreArchivoTABOP()
+	{
+		boolean abreArchivo=false;
+		try
+		{
+			BufferedReader archivoAsm=new BufferedReader(new FileReader("TABOPOSCAR.txt")); // Lee archivo .ASM Con tabop especial
+			abreArchivo=true;
+		}
+		catch(IOException ioe)
+		{
+			System.out.print("\n No se puede leer el archivo: TABOP");
+		}
+		return abreArchivo;
+	}	
+// ............................... leeArchivoTABOP ...............................		
+	String leeArchivoTABOP(String instruccion)
+	{
+		String direccionamiento="",
+		maquina="",
+		nBytes="";
+		try
+		{
+			BufferedReader archivoTABOP=new BufferedReader(new FileReader("TABOPOSCAR.txt")); // Lee archivo .ASM
+			while(archivoTABOP.ready())
+			{
+				//ArchivoTABOP tabop=new ArchivoTABOP();
+				tabop=new ArchivoTABOP();
+				
+				String linea=archivoTABOP.readLine();
+				StringTokenizer token=new StringTokenizer(linea,"|"); // Tokeniza la lineaTABOP
+				int nTokens=token.countTokens();
+				for(int i=0;i<nTokens;i++)
+				{
+					String cadena=token.nextToken();
+					if(i==0)
+						tabop.instruccion=cadena;
+					if(i==1)
+						tabop.modoDireccionamiento=cadena;
+					if(i==2)
+						tabop.codigoMaquina=cadena;
+					if(i==3)
+					{
+						tabop.numeroBytes=cadena;
+					}
+				}
+				if(instruccion.toUpperCase().equals(tabop.instruccion.toUpperCase()))
+				{
+					direccionamiento+=","+tabop.modoDireccionamiento;
+					maquina+="|"+tabop.codigoMaquina;
+					nBytes+=";"+tabop.numeroBytes;
+				}
+			}
+			maquina=maquina.substring(1);
+			nBytes=nBytes.substring(1);
+		}
+			catch(IOException ioe)
+			{
+			}
+		return direccionamiento+"-"+maquina+"-"+nBytes;
+	}
+}
+// *************************** class ModosDIRECCIONAMIENTOS******************************
+class DIRECCIONAMIENTOS
+{
+	String buscaModoDirEspecifico(String operando)
+	{
+		String modoEspecifico="";
+		boolean sale=false;
+	
+		if(esINH(operando)==true&&sale==false)
+		{
+			modoEspecifico="INH";
+			sale=true;
+		}
+		if(esIMMOpr8(operando)==true&&sale==false)
+		{
+			modoEspecifico="IMM";
+			sale=true;
+		}
+		if(esIMMOpr16(operando)==true&&sale==false)
+		{
+			modoEspecifico="IMM";
+			sale=true;
+		}
+		if(esDirecto(operando)==true&&sale==false)
+		{
+			modoEspecifico="DIR";
+			sale=true;
+		}
+		if(esExtendido(operando)==true&&sale==false)
+		{
+			modoEspecifico="EXT";
+			sale=true;
+		}
+		if(esIDX(operando)==true&&sale==false)
+		{
+			modoEspecifico="IDX";
+			sale=true;
+		}
+		if(esIDX1(operando)==true&&sale==false)
+		{
+			modoEspecifico="IDX1";
+			sale=true;
+		}
+		if(esIDX2(operando)==true&&sale==false)
+		{
+			modoEspecifico="IDX2";
+			sale=true;
+		}
+		if(esIDX2Indirecto(operando)==true&&sale==false)
+		{
+			modoEspecifico="[IDX2]";
+			sale=true;
+		}
+		if(esDIDXindirecto(operando)==true&&sale==false)
+		{
+			modoEspecifico="[D,IDX]";
+			sale=true;
+		}
+		return modoEspecifico;
+	}
+// INH MODE
+	public static boolean esINH(String operando)
+	{
+		if(operando.length() != 0)
+			return false;
+		else
+			return true;
+	}
+// IMM 8 bits	MODE
+	public static boolean esIMMOpr8(String operando)
+	{
+		if(operando.length() == 0) //tamaño del operando
+			return false;
+		if(operando.charAt(0) != '#')
+			return false;
+		
+		operando = operando.substring(1);
+		if(esOpr8_esOpr16(operando, 8) == false) //8 indica que sera evaluado con 8 bits
+			return false;
+		return true;
+	}
+// IMM 16 bits	MODE
+	public static boolean esIMMOpr16(String operando)
+	{
+		if(operando.length() == 0) //tamaño del operando
+		   return false;
+		if(operando.charAt(0) != '#')
+		   return false;
+		   
+		operando = operando.substring(1);
+		if(esOpr8_esOpr16(operando, 16) == false) //16 indica que sera evaluado con 16 bits
+		   return false;
+		return true;
+	}
+// DIRECTO MODE	
+	public static boolean esDirecto(String operando)
+	{
+		if(operando.length() == 0)
+			return false;
+		if(esOpr8_esOpr16(operando, 8) == false) //8 indica que sera evaluado con 8 bits
+			return false;
+		return true;
+	}
+// EXTENDIDO MODE
+	public static boolean esExtendido(String operando)
+	{
+		if(operando.length() == 0)
+			return false;
+		if(esOpr8_esOpr16(operando, 16) == false) //16 indica que sera evaluado con 16 bits
+			return false;
+		return true;
+	}
+// INDEXADO MODE
+	public static boolean esIDX(String operando)
+	{
+		if(operando.length() == 0)
+			return false;
+		
+		StringTokenizer tokOperando = new StringTokenizer(operando, ",");
+		if(tokOperando.countTokens() != 2)
+			return false;
+		
+		String oprx = tokOperando.nextToken();
+		String xysp = tokOperando.nextToken();
+		
+		if(index5(oprx,xysp) == false && index3(oprx,xysp) == false && indexABD(oprx,xysp) == false)
+			return false;
+			
+		return true;
+	}
+// INDEXADO 9 bits OFFSET	
+	public static boolean esIDX1(String operando)
+	{
+		if(operando.length() == 0)
+			return false;
+		
+		StringTokenizer tokOperando = new StringTokenizer(operando, ",");
+		if(tokOperando.countTokens() != 2)
+			return false;
+			
+		String oprx = tokOperando.nextToken();
+		String xysp = tokOperando.nextToken();
+		
+		if(esOprx9(oprx) == false)
+			return false;
+			
+		if(xysp.equalsIgnoreCase("x")==false&&xysp.equalsIgnoreCase("y")==false&&xysp.equalsIgnoreCase("sp")==false&&xysp.equalsIgnoreCase("pc")==false)
+			return false;
+			
+		return true; 
+	}
+// INDEXADO 16 bits OFFSET	
+	public static boolean esIDX2(String operando)
+	{
+		if(operando.length() == 0)
+			return false;
+			
+		StringTokenizer tokOperando = new StringTokenizer(operando, ",");
+		if(tokOperando.countTokens() != 2)
+			return false;
+			
+		String oprx16MasMenos = tokOperando.nextToken();
+		String xysp = tokOperando.nextToken();
+		if(esOprx16SignoMasMenos(oprx16MasMenos) == false)
+			return false;
+		
+		if(xysp.equalsIgnoreCase("x")==false&&xysp.equalsIgnoreCase("y")==false&&xysp.equalsIgnoreCase("sp")==false&&xysp.equalsIgnoreCase("pc")==false)
+			return false;
+			
+		return true;
+	}
+// INDEXADO INDIRECTO 16 bits
+	public static boolean esIDX2Indirecto(String operando)
+	{
+		if(operando.length() == 0)
+			return false;
+			
+		StringTokenizer tokOperando = new StringTokenizer(operando, ",");
+		if(tokOperando.countTokens() != 2)
+			return false;
+			
+		String oprx16MasMenosInd = tokOperando.nextToken();
+		String xysp = tokOperando.nextToken();
+		
+		if(esOprx16MasMenosIndirecto(oprx16MasMenosInd) == false)
+			return false;
+			
+		if(xysp.equalsIgnoreCase("x]")==false&&xysp.equalsIgnoreCase("y]")==false&&xysp.equalsIgnoreCase("sp]")==false&&xysp.equalsIgnoreCase("cp]")==false)
+			return false;
+			
+		return true;
+	}
+// INDEXADO INDIRECTO ACUMULADOR D
+	public static boolean esDIDXindirecto(String operando)
+	{
+		if(operando.length() == 0)
+			return false;
+			
+		StringTokenizer tokOperando = new StringTokenizer(operando, ",");
+		if(tokOperando.countTokens() != 2)
+			return false;
+			
+		String D = tokOperando.nextToken();
+		String xysp = tokOperando.nextToken();
+		if(D.equalsIgnoreCase("[D") == false)
+			return false;
+			
+		if(xysp.equalsIgnoreCase("x]")==false&&xysp.equalsIgnoreCase("y]")==false&&xysp.equalsIgnoreCase("sp]")==false&&xysp.equalsIgnoreCase("pc]")==false)
+			return false;
+			
+		return true;
+				
+	}
+// VALIDACION DE DIFERENTES BITS ****************************************************************************
+
+	public static boolean esOpr8_esOpr16(String operando, int bits)
+	{ //operando de 8 y 16 bits sin signo
+		//la variable bits indica si se quiere validar un operando para 8 o 16 bits segun sea el caso
+		if(operando.charAt(0) == '%')
+		{ 
+			operando = operando.substring(1);
+			try
+			{
+				int enteroP = Integer.parseInt(operando, 2); //convertor String binario a decimal
+				if(enteroP > 255 && bits == 8)
+					return false;
+				if(enteroP > 65535 && bits == 16)
+					return false;
+			}
+			catch(NumberFormatException no_rango)
+			{
+				return false;
+			}
+		}//fin de los binarios
+		else if(operando.charAt(0) == '@')
+		{
+			operando = operando.substring(1);
+			try
+			{
+				int enteroP = Integer.parseInt(operando, 8); //convierte String octal a decimal
+				if(enteroP > 255 && bits == 8)
+					return false;
+				if(enteroP > 65535 && bits == 16)
+					return false;
+			}
+			
+			catch(NumberFormatException no_rango)
+			{
+				return false;
+			}
+		}//fin de los octales
+		
+		else if(operando.charAt(0) == '$')
+		{
+			operando = operando.substring(1);
+			try
+			{
+				int enteroP = Integer.parseInt(operando, 16); //convertir String hexa a decimal
+				if(enteroP > 255 && bits == 8)
+					return false;
+				if(enteroP > 65535 && bits == 16)
+					return false;
+			}
+			catch(NumberFormatException no_rango)
+			{
+				return false;
+			}
+		}//fin de los hexa
+		
+		else
+		{
+			if(operando.charAt(0) == '-') //el numero es negativo ojo posible error
+				return false;   
+			
+			try
+			{
+				int enteroP = Integer.parseInt(operando, 10); //convertir de String dec a dec
+				if(enteroP > 255 && bits == 8)
+					return false;
+				if(enteroP > 65535 && bits == 16)
+					return false;
+			}
+			catch(NumberFormatException no_rango)
+			{
+				return false;
+			}
+		}//fin de los hexa
+		   
+		return true;
+	}// fin del metodo opr8_opr16
+	
+	public static boolean index5(String oprx, String xysp)
+	{ //valida operando de 5 bits con signo
+		if(oprx.length() == 0 || xysp.length() == 0)
+			return false;
+			
+		if(esOprx5(oprx) == false)
+			return false;
+		
+		if(xysp.equalsIgnoreCase("x")==false&&xysp.equalsIgnoreCase("y")==false&&xysp.equalsIgnoreCase("sp")==false&&xysp.equalsIgnoreCase("cp")==false)
+			return false;
+				
+		return true;
+	}
+	
+	public static boolean index3(String oprx, String xys)
+	{
+		if(oprx.length() == 0 || xys.length() == 0)
+			return false;
+			
+		if(esIndex3xys(xys) == false)
+			return false;
+		
+		if(esOprx3(oprx) == false)
+			return false;
+			
+		return true;
+	}
+	
+	public static boolean indexABD(String oprx, String xysp)
+	{
+		if(oprx.length() == 0 || xysp.length() == 0)
+			return false;
+			
+		if(oprx.equalsIgnoreCase("a")==false&&oprx.equalsIgnoreCase("b")==false&&oprx.equalsIgnoreCase("d")==false)
+			return false;
+		
+		if(xysp.equalsIgnoreCase("x")==false&&xysp.equalsIgnoreCase("y")==false&&xysp.equalsIgnoreCase("sp")==false&&xysp.equalsIgnoreCase("pc")==false)
+			return false;
+				
+		return true;
+	}
+	
+	public static boolean esOprx3(String oprx)
+	{
+		if(oprx.charAt(0) == '%')
+		{
+		   oprx = oprx.substring(1);
+		   try
+		   {
+		   	  int entero = Integer.parseInt(oprx, 2);
+		   	  if(entero > 7)
+		   	  	return false;
+		   }
+		   catch(NumberFormatException no_rango)
+		   {
+		   	  return false;
+		   }
+		}
+		
+		else if(oprx.charAt(0) == '@')
+		{
+			oprx = oprx.substring(1);
+			try
+			{
+				int entero = Integer.parseInt(oprx, 8);
+				if(entero > 7)
+					return false;
+			}
+			catch(NumberFormatException no_rango)
+			{
+				return false;
+			}
+		}
+		
+		else if(oprx.charAt(0) == '$')
+		{
+			oprx = oprx.substring(1);
+			try
+			{
+				int entero = Integer.parseInt(oprx, 16);
+				if(entero > 7)
+					return false;
+			}
+			catch(NumberFormatException no_rango)
+			{
+				return false;
+			}
+		}
+		
+		else
+		{
+			if(oprx.charAt(0) == '-') //valida que no sea negativo posible error
+				return false;
+			try
+			{
+				int entero = Integer.parseInt(oprx, 10);
+				if(entero > 7)
+				   return false;
+			}
+			catch(NumberFormatException no_rango)
+			{
+				return false;
+			}
+		}
+		return true;	
+	} //fin del metodo esoprx3
+	
+	public static boolean esOprx5(String oprx)
+	{ //valida operandos de 5 bits con signo
+		if(oprx.length() == 0)
+			return false;
+			
+		if(oprx.charAt(0) == '%'){
+			oprx = oprx.substring(1);
+			try
+			{
+			   int entero = Integer.parseInt(oprx, 2);
+			   if(entero > 32)
+			      return false;
+			}
+			catch(NumberFormatException no_rango)
+			{
+			   return false;
+			}
+		}
+		
+		else if(oprx.charAt(0) == '@')
+		{
+			oprx = oprx.substring(1);
+			try
+			{
+				int entero = Integer.parseInt(oprx, 8);
+				if(entero > 32)
+					return false;
+			}
+			catch(NumberFormatException no_rango)
+			{
+			   return false;
+			}
+		}
+		
+		else if(oprx.charAt(0) == '$')
+		{
+			oprx = oprx.substring(1);
+			try
+			{
+				int entero = Integer.parseInt(oprx, 16);
+				if(entero > 32)
+					return false;
+			}
+			catch(NumberFormatException no_rango)
+			{
+			   return false;
+			}
+		}
+		
+		else
+		{
+			int signo = 0;
+			try
+			{
+				if(oprx.charAt(0) == '-')
+				{
+					oprx = oprx.substring(1);
+					signo = 1;
+				}
+				int entero = Integer.parseInt(oprx, 10);
+				if(entero > 16 && signo == 1)
+				   return false;
+				if(entero > 15 && signo == 0)
+				   return false;
+			}
+			catch(NumberFormatException no_rango)
+			{
+				return false;
+			}
+		}
+		return true;
+	}//fin del metodo esOprx5
+	
+	public static boolean esIndex3xys(String xys)
+	{
+		if(xys.charAt(0) == '+' || xys.charAt(0) == '-')
+		{
+			xys = xys.substring(1);
+			if(xys.equalsIgnoreCase("x")==false&&xys.equalsIgnoreCase("y")==false&&xys.equalsIgnoreCase("sp")==false)
+				return false;
+		}
+		else
+		{
+			int pos = xys.length();
+			if(xys.charAt(pos-1) != '+' && xys.charAt(pos-1) != '-')
+				return false;
+			else
+			{
+				xys = xys.substring(0, pos-1);
+				if(xys.equalsIgnoreCase("x")==false&&xys.equalsIgnoreCase("y")==false&&xys.equalsIgnoreCase("sp")==false)
+				   return false;
+			}
+		}
+		
+		return true;
+	}//fin del metodo esIndex3xys
+	
+	public static boolean esOprx9(String oprx)
+	{ //valida operandos de 9 bits con signo
+		if(oprx.length() == 0)
+			return false;
+			
+		if(oprx.charAt(0) == '%')
+		{
+			oprx = oprx.substring(1);
+			try
+			{
+			   int entero = Integer.parseInt(oprx, 2);
+			   if(entero > 511)
+			      return false;
+			}
+			catch(NumberFormatException no_rango)
+			{
+			   return false;
+			}
+		}
+		
+		else if(oprx.charAt(0) == '@')
+		{
+			oprx = oprx.substring(1);
+			try
+			{
+				int entero = Integer.parseInt(oprx, 8);
+				if(entero > 511)
+					return false;
+			}
+			catch(NumberFormatException no_rango)
+			{
+			   return false;
+			}
+		}
+		
+		else if(oprx.charAt(0) == '$')
+		{
+			oprx = oprx.substring(1);
+			try
+			{
+				int entero = Integer.parseInt(oprx, 16);
+				if(entero > 511)
+					return false;
+			}
+			catch(NumberFormatException no_rango)
+			{
+			   return false;
+			}
+		}
+		
+		else
+		{
+			int signo = 0;
+			try
+			{
+				if(oprx.charAt(0) == '-')
+				{
+					oprx = oprx.substring(1);
+				    signo = 1; //tiene signo negativo
+				}
+				int entero = Integer.parseInt(oprx, 10);
+				if(entero > 256 && signo == 1)
+				   return false;
+				if(entero > 511 && signo == 0) //ojo posible error en el rango puede ser que sea 255
+				   return false;
+			}
+			catch(NumberFormatException no_rango){
+				return false;
+			}
+		}
+		
+		return true;
+	}//fin del metodo esOprx9
+	
+	public static boolean esOprx16SignoMasMenos(String oprx16MasMenos)
+	{ //valida operandos de 16 bits con signo
+	    if(oprx16MasMenos.length() == 0)
+			return false;
+			
+		if(oprx16MasMenos.charAt(0) == '%')
+		{
+			oprx16MasMenos = oprx16MasMenos.substring(1);
+			try
+			{
+			   int entero = Integer.parseInt(oprx16MasMenos, 2);
+			   if(entero > 65535)
+			      return false;
+			}
+			catch(NumberFormatException no_rango){
+			   return false;
+			}
+		}
+		
+		else if(oprx16MasMenos.charAt(0) == '@')
+		{
+			oprx16MasMenos = oprx16MasMenos.substring(1);
+			try
+			{
+				int entero = Integer.parseInt(oprx16MasMenos, 8);
+				if(entero > 65535)
+					return false;
+			}
+			catch(NumberFormatException no_rango){
+			   return false;
+			}
+		}
+		
+		else if(oprx16MasMenos.charAt(0) == '$')
+		{
+			oprx16MasMenos = oprx16MasMenos.substring(1);
+			try
+			{
+				int entero = Integer.parseInt(oprx16MasMenos, 16);
+				if(entero > 65535)
+					return false;
+			}
+			catch(NumberFormatException no_rango){
+			   return false;
+			}
+		}
+		
+		else
+		{
+			int signo = 0; //indica que no tiene signo
+			try
+			{
+				if(oprx16MasMenos.charAt(0) == '-')
+				{
+					oprx16MasMenos.substring(1);
+					signo = 1;
+				}
+				int entero = Integer.parseInt(oprx16MasMenos, 10);
+				
+				if(entero > 65535 && signo == 0)
+				   return false;
+				
+				if(entero > 32768 && signo == 1)
+				   return false;
+			}
+			catch(NumberFormatException no_rango)
+			{
+				return false;
+			}
+		}
+		
+	   return true;
+	}//fin del metodo esOprx16SignoMasMenos
+	
+	public static boolean esOprx16MasMenosIndirecto(String oprx16MasMenosInd)
+	{ //metodo incompleto valida operandos de 16 bits con signo "indirecto"
+	    if(oprx16MasMenosInd.length() == 0)
+			return false;
+			
+		//int longitud = oprx16MasMenosInd.length();
+		if(oprx16MasMenosInd.charAt(0) != '[')
+			return false;
+			
+		oprx16MasMenosInd = oprx16MasMenosInd.substring(1);
+			
+		if(oprx16MasMenosInd.charAt(0) == '%'){
+			oprx16MasMenosInd = oprx16MasMenosInd.substring(1);
+			try
+			{
+			   int entero = Integer.parseInt(oprx16MasMenosInd, 2);
+			   if(entero > 65535)
+			      return false;
+			}
+			catch(NumberFormatException no_rango){
+			   return false;
+			}
+		}
+		else if(oprx16MasMenosInd.charAt(0) == '@')
+		{
+			oprx16MasMenosInd = oprx16MasMenosInd.substring(1);
+			try
+			{
+				int entero = Integer.parseInt(oprx16MasMenosInd, 8);
+				if(entero > 65535)
+					return false;
+			}
+			catch(NumberFormatException no_rango)
+			{
+			   return false;
+			}
+		}
+		
+		else if(oprx16MasMenosInd.charAt(0) == '$')
+		{
+			oprx16MasMenosInd = oprx16MasMenosInd.substring(1);
+			try
+			{
+				int entero = Integer.parseInt(oprx16MasMenosInd, 16);
+				if(entero > 65535)
+					return false;
+			}
+			catch(NumberFormatException no_rango){
+			   return false;
+			}
+		}
+		else
+		{
+			int signo = 0; //indica que no tiene signo
+			try
+			{
+				if(oprx16MasMenosInd.charAt(0) == '-')
+				{
+					oprx16MasMenosInd.substring(1);
+					signo = 1;
+				}
+				int entero = Integer.parseInt(oprx16MasMenosInd, 10);
+				
+				if(entero > 65535 && signo == 0)
+				   return false;
+				
+				if(entero > 32768 && signo == 1)
+				   return false;
+			}
+			catch(NumberFormatException no_rango)
+			{
+				return false;
+			}
+		}
+	   return true;
+	}//fin del metodo esOprx16SignoMasMenosIndirecto
+}
